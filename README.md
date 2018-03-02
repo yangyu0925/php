@@ -1,6 +1,7 @@
 # php
 
-##数组函数
+#数组函数
+
 1.数组中的所有键名修改为全大写或小写
 ```
 $arr = ['name' => 'taylor', 'languages' => ['a' => 'php', 'b' => 'javascript']];
