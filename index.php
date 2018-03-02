@@ -1,22 +1,19 @@
 <?php
 
-$a = array(
-    array(
-        'id' => 2135,
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-    ),
-    array(
-        'id' => 3245,
-        'first_name' => 'Sally',
-        'last_name' => 'Smith',
-    )
+function flipAndGroup($input) {
+    $outArr = array();
+    array_walk($input, function($value, $key) use (&$outArr) {
+        if(!isset($outArr[$value]) || !is_array($outArr[$value])) {
+            $outArr[$value] = [];
+        }
+        $outArr[$value][] = $key;
+    });
+    return $outArr;
+}
+
+$users_countries = array(
+    'username1' => 'US',
+    'user2' => 'US',
+    'newuser' => 'GB'
 );
-
-print_r(array_column($a, 'first_name'));
-
-array_walk($a, function (&$value, $key, $return) {
-    $value = $value[$return];
-}, 'first_name');
-
-print_r($a);
+print_r(flipAndGroup($users_countries));

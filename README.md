@@ -86,6 +86,33 @@
     
     print_r($a);
 ```
-
-
-
+6.创建一个数组，用一个数组的值作为其键名，另一个数组的值作为其值
+```
+    $a = array('green', 'red', 'yellow');
+    $b = array('avocado', 'apple', 'banana');
+    
+    print_r(array_combine($a, $b));
+    
+    function flipAndGroup($input) {
+        $outArr = array();
+        array_walk($input, function($value, $key) use (&$outArr) {
+            if(!isset($outArr[$value]) || !is_array($outArr[$value])) {
+                $outArr[$value] = [];
+            }
+            $outArr[$value][] = $key;
+        });
+        return $outArr;
+    }
+    
+    $users_countries = array(
+        'username1' => 'US',
+        'user2' => 'US',
+        'newuser' => 'GB'
+    );
+    print_r(flipAndGroup($users_countries));
+```
+7.统计数组中所有的值
+```
+    $array = array(1, "hello", 1, "world", "hello");
+    print_r(array_count_values($array));
+```
