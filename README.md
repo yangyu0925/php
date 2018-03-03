@@ -116,3 +116,87 @@
     $array = array(1, "hello", 1, "world", "hello");
     print_r(array_count_values($array));
 ```
+ 8.带索引检查计算数组的差集
+```
+    $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+    $array2 = array("a" => "green", "yellow", "red");
+    
+    print_r(array_diff_assoc($array1, $array2));
+    
+    function array_diff_assoc_ci($arr1, $arr2)
+    {
+        foreach ($arr1 as $key => $value) {
+            if (isset($arr2[$key])) {
+                if ($arr1[$key] != $arr2[$key]) {
+                    $r[$key] = $value;
+                }
+            } else {
+                $r[$key] = $value;
+            }
+        }
+        return $r;
+    }
+    
+    print_r(array_diff_assoc_ci($array1, $array2));
+    
+    function array_diff_assoc_recursive($array1, $array2)
+    {
+        $difference = NULL;
+        foreach($array1 as $key => $value)
+        {
+            if(is_array($value)) {
+                if(!array_key_exists($key, $array2)) {
+                    $difference[$key] = $value;
+                } elseif(!is_array($array2[$key])) {
+                    $difference[$key] = $value;
+                } else {
+                    $new_diff = array_diff_assoc_recursive($value, $array2[$key]);
+                    if($new_diff != FALSE)
+                    {
+                        $difference[$key] = $new_diff;
+                    }
+                }
+            } elseif(!array_key_exists($key, $array2) || $array2[$key] != $value) {
+                $difference[$key] = $value;
+            }
+        }
+        return !isset($difference) ? 0 : $difference;
+    }
+    
+    print_r(array_diff_assoc_recursive($array1, $array2));
+```
+9.使用键名比较计算数组的差集
+```$xslt
+    $array1 = array("a" => "green1", "b" => "brown", "c" => "blue", "red");
+    $array2 = array("a" => "green", "yellow", "red");
+    
+    
+    print_r(array_diff_key($array1, $array2));
+    
+    function array_diff_key_ci($arr1, $arr2) {
+        $result = [];
+    
+        array_walk($arr1, function ($val, $key, $return) use (&$result) {
+            if (!array_key_exists($key, $return)) {
+                $result[$key] = $val;
+            }
+        }, $arr2);
+    
+        return $result;
+    }
+    
+    print_r(array_diff_key($array1, $array2));
+```
+10.计算数组的差集
+```$xslt
+    $array1 = array("a" => "green", "red", "blue", "red");
+    $array2 = array("b" => "green", "yellow", "red");
+    $result = array_diff($array1, $array2);
+    
+    print_r($result);
+    
+    function arrayDiff($A, $B) {
+        $intersect = array_intersect($A, $B);
+        return array_merge(array_diff($A, $intersect), array_diff($B, $intersect));
+    }
+```
