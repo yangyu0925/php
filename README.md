@@ -287,4 +287,31 @@
     
     $array = array("blue", "red", "green", "blue", "blue");
     print_r(array_keys($array, "blue"));
+    
+    function multiarray_keys($ar) { 
+                
+        foreach($ar as $k => $v) { 
+            $keys[] = $k; 
+            if (is_array($ar[$k])) 
+                $keys = array_merge($keys, multiarray_keys($ar[$k])); 
+        } 
+        return $keys; 
+    } 
+    
+    function array_keys_contain($input, $search_value, $strict = false)
+    {
+        $tmpkeys = [];
+
+        $keys = array_keys($input);
+
+        foreach ($keys as $k)
+        {
+            if ($strict && strpos($k, $search_value) !== FALSE)
+                $tmpkeys[] = $k;
+            elseif (!$strict && stripos($k, $search_value) !== FALSE)
+                $tmpkeys[] = $k;
+        }
+
+        return $tmpkeys;
+    }
 ```
