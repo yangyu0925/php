@@ -273,3 +273,18 @@
     $result = array_intersect($array1, $array2);
     print_r($result);
 ```
+18.检查数组里是否有指定的键名或索引
+```$xslt
+    $search_array = array('first' => 1, 'second' => 4);
+    if (array_key_exists('first', $search_array)) {
+        echo "The 'first' element is in the array";
+    }
+```
+19.返回数组中部分的或所有的键名
+```
+    $array = array(0 => 100, "color" => "red");
+    print_r(array_keys($array));
+    
+    $array = array("blue", "red", "green", "blue", "blue");
+    print_r(array_keys($array, "blue"));
+```
