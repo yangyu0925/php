@@ -2,14 +2,15 @@
 
 $arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 
-var_dump(array_filter($arr, function($value) {
-    return $value === 2;
-}));
+var_dump(($arr));
 
-var_dump(array_filter($arr, function($key) {
-    return $key === 'b';
-}, ARRAY_FILTER_USE_KEY));
+function array_flip_ci($input)
+{
+    $output = [];
+    foreach ($input as $key => $values) {
+            $output[$values] = $key;
+    }
+    return $output;
+}
 
-var_dump(array_filter($arr, function($value, $key) {
-    return $key === 'b' || $value === 3;
-}, ARRAY_FILTER_USE_BOTH));
+var_dump(array_flip_ci($arr));

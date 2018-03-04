@@ -236,3 +236,19 @@
         return $key === 'b' || $value === 3;
     }, ARRAY_FILTER_USE_BOTH));
 ```
+14.交换数组中的键和值
+```
+    $input = array("a" => 1, "b" => 1, "c" => 2);
+    $flipped = array_flip($input);
+    
+    print_r($flipped);
+    
+    function array_flip_ci($input)
+    {
+        $output = [];
+        foreach ($input as $key => $values) {
+                $output[$values] = $key;
+        }
+        return $output;
+    }
+```
