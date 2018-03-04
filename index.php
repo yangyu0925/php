@@ -1,16 +1,6 @@
 <?php
 
-$arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+$arr1 = array('green', 'blue', 'black');
+$arr2 = array('yellow', 'red', 'cyan');
 
-var_dump(($arr));
-
-function array_flip_ci($input)
-{
-    $output = [];
-    foreach ($input as $key => $values) {
-            $output[$values] = $key;
-    }
-    return $output;
-}
-
-var_dump(array_flip_ci($arr));
+print_r(array_intersect($arr1, $arr2));

@@ -252,3 +252,24 @@
         return $output;
     }
 ```
+15.带索引检查计算数组的交集
+```
+    $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+    $array2 = array("a" => "green", "b" => "yellow", "blue", "red");
+    $result = array_intersect_assoc($array1, $array2);
+    print_r($result);
+```
+16.使用键名比较计算数组的交集
+```
+    $array1 = array("a" => "green", "b" => "brown", "c" => "blue", "red");
+    $array2 = array("a" => "green", "b" => "yellow", "blue", "red");
+    $result = array_intersect_key($array1, $array2);
+    print_r($result);
+```
+17.计算数组的交集
+```
+    $array1 = array("a" => "green", "red", "blue");
+    $array2 = array("b" => "green", "yellow", "red");
+    $result = array_intersect($array1, $array2);
+    print_r($result);
+```
