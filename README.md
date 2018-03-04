@@ -200,3 +200,39 @@
         return array_merge(array_diff($A, $intersect), array_diff($B, $intersect));
     }
 ```
+11.使用指定的键和值填充数组
+```
+    $keys = array('foo', 5, 10, 'bar');
+    $a = array_fill_keys($keys, 'banana');
+    print_r($a);
+    
+    function array_fill_keys_ci($array, $values) {
+        if(is_array($array)) {
+            foreach($array as $key => $value) {
+                $arraydisplay[$array[$key]] = $values;
+            }
+        }
+        return $arraydisplay;
+    }
+```
+12.用给定的值填充数组
+```
+    $a = array_fill(5, 6, 'banana');
+    print_r($a);
+```
+13.用回调函数过滤数组中的单元
+```
+    $arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+    
+    var_dump(array_filter($arr, function($value) {
+        return $value === 2;
+    }));
+    
+    var_dump(array_filter($arr, function($key) {
+        return $key === 'b';
+    }, ARRAY_FILTER_USE_KEY));
+    
+    var_dump(array_filter($arr, function($value, $key) {
+        return $key === 'b' || $value === 3;
+    }, ARRAY_FILTER_USE_BOTH));
+```

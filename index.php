@@ -1,18 +1,15 @@
 <?php
 
-$array1 = array("a" => "green", "red", "blue", "red");
-$array2 = array("b" => "green", "yellow", "red");
+$arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 
-function array_diff_ci($arr1, $arr2) {
-    $result = [];
+var_dump(array_filter($arr, function($value) {
+    return $value === 2;
+}));
 
-    foreach ($arr1 as $key => $value) {
-        if (!in_array($value, $arr2)) {
-            $result[$key] = $value;
-        }
-    }
+var_dump(array_filter($arr, function($key) {
+    return $key === 'b';
+}, ARRAY_FILTER_USE_KEY));
 
-    return $result;
-}
-
-print_r(array_diff_ci($array1, $array2));
+var_dump(array_filter($arr, function($value, $key) {
+    return $key === 'b' || $value === 3;
+}, ARRAY_FILTER_USE_BOTH));
