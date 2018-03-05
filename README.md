@@ -322,4 +322,84 @@
     $b = array_map(function ($n) {
         return $n * $n * $n;
     }, $a);
+    
+    $an_array = array(
+        'item1' => 0,
+        'item2' => 0,
+        'item3' => 0,
+        'item4' => 0,
+        'item5' => 0,
+    );
+    
+    $items_to_modify = array('item1', "item3");
+    
+    array_map(function ($value) use (&$an_array ) {
+        $an_array [$value] = (boolean)$an_array [$value];   //example operation:
+    }, $items_to_modify);
+    
+    
+```
+21.递归地合并一个或多个数组
+```
+    $ar1 = array("color" => array("favorite" => "red"), 5);
+    $ar2 = array(10, "color" => array("favorite" => "green", "blue"));
+    $result = array_merge_recursive($ar1, $ar2);
+    print_r($result);
+```
+22.合并一个或多个数组
+```
+    $array1 = array("color" => "red", 2, 4);
+    $array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+    $result = array_merge($array1, $array2);
+    print_r($result);
+    
+    $data = [[1, 2], [3], [4, 5]];
+    print_r(array_merge(... $data)); // [1, 2, 3, 4, 5];
+```
+23.对多个数组或多维数组进行排序
+```
+    $data[] = array('volume' => 67, 'edition' => 2);
+    $data[] = array('volume' => 86, 'edition' => 1);
+    $data[] = array('volume' => 85, 'edition' => 6);
+    $data[] = array('volume' => 98, 'edition' => 2);
+    $data[] = array('volume' => 86, 'edition' => 6);
+    $data[] = array('volume' => 67, 'edition' => 7);
+    
+    // 取得列的列表
+    foreach ($data as $key => $row) {
+        $volume[$key]  = $row['volume'];
+        $edition[$key] = $row['edition'];
+    }
+    
+    // 将数据根据 volume 降序排列，根据 edition 升序排列
+    // 把 $data 作为最后一个参数，以通用键排序
+    array_multisort($volume, SORT_DESC, $edition, SORT_ASC, $data);
+    
+    function array_orderby()
+    {
+        $args = func_get_args();
+        $data = array_shift($args);
+        foreach ($args as $n => $field) {
+            if (is_string($field)) {
+                $tmp = array();
+                foreach ($data as $key => $row)
+                    $tmp[$key] = $row[$field];
+                $args[$n] = $tmp;
+                }
+        }
+        $args[] = &$data;
+        call_user_func_array('array_multisort', $args);
+        return array_pop($args);
+    }
+    ?>
+    
+    <?php
+    $data[] = array('volume' => 67, 'edition' => 2);
+    $data[] = array('volume' => 86, 'edition' => 1);
+    $data[] = array('volume' => 85, 'edition' => 6);
+    $data[] = array('volume' => 98, 'edition' => 2);
+    $data[] = array('volume' => 86, 'edition' => 6);
+    $data[] = array('volume' => 67, 'edition' => 7);
+    
+    $sorted = array_orderby($data, 'volume', SORT_DESC, 'edition', SORT_ASC);
 ```
