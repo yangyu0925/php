@@ -1,16 +1,9 @@
 <?php
 
-$array = array(0 => 100, ["color" => "red"]);
+$a = array(1, 2, 3, 4, 5);
 
-function array_keys_recursive($arr) {
-    foreach ($arr as $key => $value) {
-        $result[] = $key;
+$b = array_map(function ($n) {
+    return $n * $n * $n;
+}, $a);
 
-        if (is_array($value)) {
-            $result = array_merge($result, array_keys_recursive($value));
-        }
-    }
-    return $result;
-}
-
-var_dump(array_keys_recursive($array));
+var_dump($a, $b);

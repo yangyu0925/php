@@ -315,3 +315,11 @@
         return $tmpkeys;
     }
 ```
+20.为数组的每个元素应用回调函数
+```
+    $a = array(1, 2, 3, 4, 5);
+    
+    $b = array_map(function ($n) {
+        return $n * $n * $n;
+    }, $a);
+```
