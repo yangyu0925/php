@@ -403,3 +403,37 @@
     
     $sorted = array_orderby($data, 'volume', SORT_DESC, 'edition', SORT_ASC);
 ```
+24.以指定长度将一个值填充进数组
+```
+    $input = array(12, 10, 9);
+    
+    $result = array_pad($input, 5, 0);
+    // result is array(12, 10, 9, 0, 0)
+    
+    $result = array_pad($input, -7, -1);
+    // result is array(-1, -1, -1, -1, 12, 10, 9)
+    
+    $result = array_pad($input, 2, "noop");
+    // not padded
+    
+    function array_insert(&$arr, $pos, $new_el=null) {
+        $arraypad = array_pad($arr, count($arr)+1, 0);
+        for ($i = count($arraypad) - 1; $i>=$pos; $i--) {
+            $arr[$i] = $arr[$i-1];
+            if ($i == $pos) {
+                $arr[$i] = $new_el;
+            }
+        }
+    }
+    
+    $digits = array();
+    $digits[0] = 0;
+    $digits[1] = 1;
+    $digits[2] = 2;
+    $digits[3] = 3;
+    $digits[4] = 4;
+    $digits[5] = 5;
+    
+    array_insert($digits, 3, 100);
+    echo "new: "; var_dump($digits);
+```
