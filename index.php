@@ -111,3 +111,91 @@ foreach ($conn_hash as $k1=>$v) {
 }
 
 var_dump($conn_hash);
+
+
+/**
+ * 展示组网状态
+ */
+function getNetConnect(){
+    $id = I('get.id');
+
+    $S6 = D()->db('6_config','DB_NETWORK_DATA_NEW');
+    $netword = $S6->table('connectivity')->where(['tid' => $id])->select();
+    $routers = $S6->table('routers')->where(['tid' => $id])->select();
+
+    $gwids = array_column($routers, 'gwid');
+
+    foreach ($routers as $key => $value) {
+        $new[$value['gwid']] = $value;
+    }
+
+    $gwidArr = M('user_router', '', 'STAT_DB_SLAVE_S26')->field('gwid,remark')->where(['gwid' => ['in', $gwids]])->select();
+
+    foreach ($gwidArr as $key => $value) {
+        $gwidArr_new[$value['gwid']] = $value;
+    }
+
+    $arr = [];
+
+
+    $subnets = $S6->table('subnets')->where(['tid' => $id])->select();
+
+    $subnets_gwid = [];
+    array_walk($subnets, function ($value, $key) use (&$subnets_gwid) {
+        $subnets_gwid[$value['gwid']]['sub'][] = $value['subnet'];
+    });
+
+    foreach ($subnets_gwid as $key => $item) {
+        $subnets_gwid[$key]['sub'] = implode(',', $item['sub']);
+    }
+
+    foreach ((array_merge_recursive($new, $gwidArr_new, $subnets_gwid)) as $key => $value) {
+        $arr[$key]['name'] = $value['remark'];
+        $arr[$key]['image'] = (time() - $value['last_report']) > 300 ? 'https://'.$this->domain.'/Public/images/r2d.svg':'https://'.$this->domain.'/Public/images/r2.svg';
+//            $arr[$key]['info'] = (time() - $value['last_report']) > 300 ? '离线':'在线';
+        $arr[$key]['info'] = $value['sub'];
+
+    }
+
+    $connectivity = $S6->table('connectivity')->where(['tid' => $id])->select();
+
+
+
+    foreach ($connectivity as $key => $value) {
+        $connectivity_new[$value['left']]['par'][] = $value;
+    }
+
+
+    $a = array_values(array_merge_recursive($arr, $connectivity_new));
+
+    $str = [];
+
+    $j = 0;
+
+    dump($a);die;
+
+    foreach ($a as $key => $value) {
+        $str['nodes'][$key]['name'] = $value['name'];
+        $str['nodes'][$key]['image'] = $value['image'];
+        $str['nodes'][$key]['info'] = $value['info'];
+
+        foreach ($value['par'] as $k => $item ) {
+            $str['edges'][$j]['source'] = $key;
+            $str['edges'][$j]['target'] = $k;
+            $str['edges'][$j]['relation'] = (time() - $item['last_report']) > 300 ? '断开':'接通';
+            $str['edges'][$j]['stroke'] =  (time() - $item['last_report']) > 300 ? '#fd7485':'#23a9f6';
+            $j++;
+        }
+
+    }
+
+//        $str['edges'][] = ['source' => 0, 'target' => 1, 'stroke' => '#23a9f6'];
+
+    $str =  json_encode($str,JSON_PRETTY_PRINT);
+
+//        $data = $this->getNetWorkParame($id);
+//        $str = $data[2];
+
+    echo $str;
+//        file_put_contents('/alidata1/www/newyun.ikuai8.com/Public/json/cc.json',$str,FILE_APPEND);
+}
