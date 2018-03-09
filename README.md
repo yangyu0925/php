@@ -437,3 +437,33 @@
     array_insert($digits, 3, 100);
     echo "new: "; var_dump($digits);
 ```
+25.数组去重
+```
+    $conn_hash = array (
+        "35032cbb909467f89b47648393f1b27f,52bb2d9dae622177e3394a16bd1aff38" => 1,
+        "35032cbb909467f89b47648393f1b27f,b1d5a3d69bf95c98636700f0cad03743" => 1,
+        "35032cbb909467f89b47648393f1b27f,c9e7502620f11cd1bdb565b7af3ebe38" => 1,
+        "52bb2d9dae622177e3394a16bd1aff38,35032cbb909467f89b47648393f1b27f" => 1,
+        "52bb2d9dae622177e3394a16bd1aff38,b1d5a3d69bf95c98636700f0cad03743" => 1,
+        "52bb2d9dae622177e3394a16bd1aff38,c9e7502620f11cd1bdb565b7af3ebe38" => 1,
+        "b1d5a3d69bf95c98636700f0cad03743,35032cbb909467f89b47648393f1b27f" => 1,
+        "b1d5a3d69bf95c98636700f0cad03743,52bb2d9dae622177e3394a16bd1aff38" => 1,
+        "b1d5a3d69bf95c98636700f0cad03743,c9e7502620f11cd1bdb565b7af3ebe38" => 1,
+        "c9e7502620f11cd1bdb565b7af3ebe38,35032cbb909467f89b47648393f1b27f" => 1,
+        "c9e7502620f11cd1bdb565b7af3ebe38,52bb2d9dae622177e3394a16bd1aff38" => 1,
+        "c9e7502620f11cd1bdb565b7af3ebe38,b1d5a3d69bf95c98636700f0cad03743" => 1,
+    );
+    
+    foreach ($conn_hash as $k1=>$v) {
+        if (!isset($conn_hash[$k1]))
+            continue;
+        $__k1 = explode(",", $k1);
+        $k2 = "$__k1[1],$__k1[0]";
+        if (isset($conn_hash[$k2])) {
+            unset($conn_hash[$k2]);
+            $conn_hash[$k1]++;
+        }
+    }
+    
+    var_dump($conn_hash);
+```
