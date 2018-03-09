@@ -467,3 +467,28 @@
     
     var_dump($conn_hash);
 ```
+26.弹出数组最后一个单元（出栈）
+```
+    $stack = array("orange", "banana", "apple", "raspberry");
+    $fruit = array_pop($stack);
+    print_r($stack);
+```
+27.计算数组中所有值的乘积
+```
+    $a = array(2, 4, 6, 8);
+    
+    var_dump(array_product($a));
+```
+28.将一个或多个单元压入数组的末尾（入栈）
+```
+    $stack = array("orange", "banana");
+    array_push($stack, "apple", "raspberry");
+    print_r($stack);
+```
+29.从数组中随机取出一个或多个单元
+```
+    $input = array("Neo", "Morpheus", "Trinity", "Cypher", "Tank");
+    $rand_keys = array_rand($input, 2);
+    echo $input[$rand_keys[0]] . "\n";
+    echo $input[$rand_keys[1]] . "\n";
+```
