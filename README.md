@@ -492,3 +492,55 @@
     echo $input[$rand_keys[0]] . "\n";
     echo $input[$rand_keys[1]] . "\n";
 ```
+30.随机生成优惠券
+```
+    echo substr(strtoupper(md5(uniqid(mt_rand(1,10000)*mt_rand(1,10000)))), 0, 16);
+```
+31.用回调函数迭代地将数组简化为单一的值
+```
+    $a = array(1, 2, 3, 4, 5);
+    
+    $b = array_reduce($a, function ($item, $value) {
+        $item *= $value;
+        return $item;
+    }, 10);
+    
+    var_dump($b);
+```
+32.使用传递的数组递归替换第一个数组的元素
+```
+    $base = array('citrus' => array( "orange") , 'berries' => array("blackberry", "raspberry"), );
+    $replacements = array('citrus' => array('pineapple'), 'berries' => array('blueberry'));
+    
+    $basket = array_replace_recursive($base, $replacements);
+    print_r($basket);
+    
+    $basket = array_replace($base, $replacements);
+    print_r($basket);
+```
+33.使用传递的数组替换第一个数组的元素
+```
+    $base = array("orange", "banana", "apple", "raspberry");
+    $replacements = array(0 => "pineapple", 4 => "cherry");
+    $replacements2 = array(0 => "grape");
+    
+    $basket = array_replace($base, $replacements, $replacements2);
+    print_r($basket);
+```
+34.返回单元顺序相反的数组
+```
+    $input  = array("php", 4.0, array("green", "red"));
+    $reversed = array_reverse($input);
+    $preserved = array_reverse($input, true);
+    
+    print_r($input);
+    print_r($reversed);
+    print_r($preserved);
+```
+35.在数组中搜索给定的值，如果成功则返回首个相应的键名
+```
+    $array = array(0 => 'blue', 1 => 'red', 2 => 'green', 3 => 'red');
+    
+    $key = array_search('green', $array); // $key = 2;
+    $key = array_search('red', $array);   // $key = 1;
+```
