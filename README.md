@@ -544,3 +544,52 @@
     $key = array_search('green', $array); // $key = 2;
     $key = array_search('red', $array);   // $key = 1;
 ```
+36.将数组开头的单元移出数组
+```
+    $stack = array("orange", "banana", "apple", "raspberry");
+    $fruit = array_shift($stack);
+    print_r($stack);
+```
+37.从数组中取出一段
+```
+    $input = array("a", "b", "c", "d", "e");
+    
+    $output = array_slice($input, 2);      // returns "c", "d", and "e"
+    $output = array_slice($input, -2, 1);  // returns "d"
+    $output = array_slice($input, 0, 3);   // returns "a", "b", and "c"
+    
+    print_r(array_slice($input, 2, -1));
+    print_r(array_slice($input, 2, -1, true));
+```
+38.去掉数组中的某一部分并用其它值取代
+```
+    $input = array("red", "green", "blue", "yellow");
+    array_splice($input, 2);
+    // $input is now array("red", "green")
+    
+    $input = array("red", "green", "blue", "yellow");
+    array_splice($input, 1, -1);
+    // $input is now array("red", "yellow")
+    
+    $input = array("red", "green", "blue", "yellow");
+    array_splice($input, 1, count($input), "orange");
+    // $input is now array("red", "orange")
+    
+    $input = array("red", "green", "blue", "yellow");
+    array_splice($input, -1, 1, array("black", "maroon"));
+    // $input is now array("red", "green",
+    //          "blue", "black", "maroon")
+    
+    $input = array("red", "green", "blue", "yellow");
+    array_splice($input, 3, 0, "purple");
+    // $input is now array("red", "green",
+    //          "blue", "purple", "yellow");
+```
+39.对数组中所有值求和
+```
+    $a = array(2, 4, 6, 8);
+    echo "sum(a) = " . array_sum($a) . "\n";
+    
+    $b = array("a" => 1.2, "b" => 2.3, "c" => 3.4);
+    echo "sum(b) = " . array_sum($b) . "\n";
+```

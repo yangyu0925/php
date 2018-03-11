@@ -1,10 +1,16 @@
 <?php
 
-$a = array(1, 2, 3, 4, 5);
+$values = array
+(
+    'Article'=>'24497',
+    'Type'=>'LED',
+    'Socket'=>'E27',
+    'Dimmable'=>'',
+    'Wattage'=>'10W'
+);
 
-$b = array_reduce($a, function ($item, $value) {
-    $item *= $value;
-    return $item;
-}, 10);
+$keys = array_fill_keys(array('Article','Wattage','Dimmable','Type','Foobar'), ''); // wanted array with empty value
 
-var_dump($b);
+$allkeys = array_replace($keys, array_intersect_key($values, $keys));    // replace only the wanted keys
+
+var_dump($allkeys);
