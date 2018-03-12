@@ -631,16 +631,44 @@
         $item1 = "$prefix: $item1";
     }
     
-    function test_print($item2, $key)
-    {
-        echo "$key. $item2<br />\n";
-    }
-    
-    echo "Before ...:\n";
-    array_walk($fruits, 'test_print');
-    
     array_walk($fruits, 'test_alter', 'fruit');
-    echo "... and after:\n";
+```
+45.对数组进行逆向排序并保持索引关系
+```
+    $arr = range(1, 10);
     
-    array_walk($fruits, 'test_print');
+    arsort($arr);
+    
+    var_dump($arr);
+```
+46.对数组进行排序并保持索引关系
+```
+    $arr = range(10, 1);
+    
+    asort($arr);
+    
+    var_dump($arr);
+```
+47.建立一个数组，包括变量名和它们的值
+```
+    $city  = "San Francisco";
+    $state = "CA";
+    $event = "SIGGRAPH";
+    
+    $location_vars = array("city", "state");
+    
+    $result = compact("event", "nothing_here", $location_vars);
+    print_r($result);
+```
+48.计算数组中的单元数目，或对象中的属性个数
+```
+    $a[0] = 1;
+    $a[1] = 3;
+    $a[2] = 5;
+    var_dump(count($a));
+    
+    $b[0]  = 7;
+    $b[5]  = 9;
+    $b[10] = 11;
+    var_dump(count($b));
 ```

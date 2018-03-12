@@ -1,16 +1,11 @@
 <?php
 
-$values = array
-(
-    'Article'=>'24497',
-    'Type'=>'LED',
-    'Socket'=>'E27',
-    'Dimmable'=>'',
-    'Wattage'=>'10W'
-);
+$a[0] = 1;
+$a[1] = 3;
+$a[2] = 5;
+var_dump(count($a));
 
-$keys = array_fill_keys(array('Article','Wattage','Dimmable','Type','Foobar'), ''); // wanted array with empty value
-
-$allkeys = array_replace($keys, array_intersect_key($values, $keys));    // replace only the wanted keys
-
-var_dump($allkeys);
+$b[0]  = 7;
+$b[5]  = 9;
+$b[10] = 11;
+var_dump(count($b));
