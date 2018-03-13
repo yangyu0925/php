@@ -672,3 +672,94 @@
     $b[10] = 11;
     var_dump(count($b));
 ```
+49.返回数组中的当前单元
+```
+    $transport = array('foot', 'bike', 'car', 'plane');
+    $mode = current($transport); // $mode = 'foot';
+    $mode = next($transport);    // $mode = 'bike';
+    $mode = current($transport); // $mode = 'bike';
+    $mode = prev($transport);    // $mode = 'foot';
+    $mode = end($transport);     // $mode = 'plane';
+    $mode = current($transport); // $mode = 'plane';
+```
+50.返回数组中当前的键／值对并将数组指针向前移动一步
+```
+    $foo = array("Robert" => "Bob", "Seppo" => "Sepi");
+    $bar = each($foo);
+    print_r($bar);
+```
+51.将数组的内部指针指向最后一个单元
+```
+    $fruits = array('apple', 'banana', 'cranberry');
+    echo end($fruits); // cranberry
+```
+52.检查数组中是否存在某个值
+```
+    $os = array("Mac", "NT", "Irix", "Linux");
+    if (in_array("Irix", $os)) {
+        echo "Got Irix";
+    }
+```
+53.从关联数组中取得键名
+```
+    $array = [
+            'fruit1' => 'apple',
+            'fruit2' => 'orange',
+            'fruit3' => 'grape',
+            'fruit4' => 'apple',
+            'fruit5' => 'apple' 
+        ];
+    
+    var_dump(key($array)); // 'fruit1'
+```
+54. 对数组按照键名逆向排序
+```
+    $fruits = array("d"=>"lemon", "a"=>"orange", "b"=>"banana", "c"=>"apple");
+    krsort($fruits);
+    foreach ($fruits as $key => $val) {
+        echo "$key = $val\n";
+    }
+```
+55.对数组按照键名排序
+```
+    $fruits = array("d"=>"lemon", "a"=>"orange", "b"=>"banana", "c"=>"apple");
+    ksort($fruits);
+    foreach ($fruits as $key => $val) {
+        echo "$key = $val\n";
+    }
+```
+56.把数组中的值赋给一组变量
+```
+    $info = array('coffee', 'brown', 'caffeine');
+    
+    // 列出所有变量
+    list($drink, $color, $power) = $info;
+    echo "$drink is $color and $power makes it special.\n";
+    
+    // 列出他们的其中一个
+    list($drink, , $power) = $info;
+    echo "$drink has $power.\n";
+    
+    // 或者让我们跳到仅第三个
+    list( , , $power) = $info;
+    echo "I need $power!\n";
+    
+    // list() 不能对字符串起作用
+    list($bar) = "abcde";
+    var_dump($bar); // NULL
+```
+57.用“自然排序”算法对数组进行不区分大小写字母的排序
+```
+    $array1 = array('IMG0.png', 'img12.png', 'img10.png', 'img2.png', 'img1.png', 'IMG3.png');
+
+    natcasesort($array1);
+    
+    print_r($array1);
+```
+58.用“自然排序”算法对数组排序
+```
+    $array1 = array("img12.png", "img10.png", "img2.png", "img1.png");
+    
+    natsort($array1);
+    print_r($array1);
+```

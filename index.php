@@ -1,11 +1,19 @@
 <?php
 
-$a[0] = 1;
-$a[1] = 3;
-$a[2] = 5;
-var_dump(count($a));
+$info = array('coffee', 'brown', 'caffeine');
 
-$b[0]  = 7;
-$b[5]  = 9;
-$b[10] = 11;
-var_dump(count($b));
+// 列出所有变量
+list($drink, $color, $power) = $info;
+echo "$drink is $color and $power makes it special.\n";
+
+// 列出他们的其中一个
+list($drink, , $power) = $info;
+echo "$drink has $power.\n";
+
+// 或者让我们跳到仅第三个
+list( , , $power) = $info;
+echo "I need $power!\n";
+
+// list() 不能对字符串起作用
+list($bar) = "abcde";
+var_dump($bar); // NULL
