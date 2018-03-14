@@ -763,3 +763,60 @@
     natsort($array1);
     print_r($array1);
 ```
+59.将数组中的内部指针向前移动一位
+```
+    $transport = array('foot', 'bike', 'car', 'plane');
+    $mode = current($transport); // $mode = 'foot';
+    $mode = next($transport);    // $mode = 'bike';
+    $mode = next($transport);    // $mode = 'car';
+    $mode = prev($transport);    // $mode = 'bike';
+    $mode = end($transport);     // $mode = 'plane';
+```
+60.将数组的内部指针倒回一位
+```
+    $transport = array('foot', 'bike', 'car', 'plane');
+    $mode = current($transport); // $mode = 'foot';
+    $mode = next($transport);    // $mode = 'bike';
+    $mode = next($transport);    // $mode = 'car';
+    $mode = prev($transport);    // $mode = 'bike';
+    $mode = end($transport);     // $mode = 'plane';
+```
+61.根据范围创建数组，包含指定的元素
+```
+    // array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+    foreach (range(0, 12) as $number) {
+        echo $number;
+    }
+    
+    //  step 参数
+    // array(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+    foreach (range(0, 100, 10) as $number) {
+        echo $number;
+    }
+    
+    // 字符序列的使用
+    // array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
+    foreach (range('a', 'i') as $letter) {
+        echo $letter;
+    }
+    // array('c', 'b', 'a');
+    foreach (range('c', 'a') as $letter) {
+        echo $letter;
+    }
+```
+62.将数组的内部指针指向第一个单元
+```
+    $array = array('step one', 'step two', 'step three', 'step four');
+    
+    // by default, the pointer is on the first element
+    echo current($array) . "<br />\n"; // "step one"
+    
+    // skip two steps
+    next($array);
+    next($array);
+    echo current($array) . "<br />\n"; // "step three"
+    
+    // reset pointer, start again on step one
+    reset($array);
+    echo current($array) . "<br />\n"; // "step one"
+```
