@@ -820,3 +820,29 @@
     reset($array);
     echo current($array) . "<br />\n"; // "step one"
 ```
+63.对数组逆向排序
+```
+    $fruits = array("lemon", "orange", "banana", "apple");
+    rsort($fruits);
+    foreach ($fruits as $key => $val) {
+        echo "$key = $val\n";
+    }
+```
+64.打乱数组
+```
+    $numbers = range(1, 20);
+    shuffle($numbers);
+    foreach ($numbers as $number) {
+        echo "$number ";
+    }
+```
+65.对数组排序
+```
+    $fruits = array(
+        "Orange1", "orange2", "Orange3", "orange20"
+    );
+    sort($fruits, SORT_NATURAL | SORT_FLAG_CASE);
+    foreach ($fruits as $key => $val) {
+        echo "fruits[" . $key . "] = " . $val . "\n";
+    }
+```
