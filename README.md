@@ -846,3 +846,37 @@
         echo "fruits[" . $key . "] = " . $val . "\n";
     }
 ```
+
+字符串函数
+1.以 C 语言风格使用反斜线转义字符串中的字符
+```
+    echo addcslashes('foo[ ]', 'A..z');
+    // 输出：\f\o\o\[ \]
+    echo addcslashes("zoo['.']", 'z..A');
+    // 输出：\zoo['\.']
+```
+2. 使用反斜线引用字符串
+```
+    $str = "Is your name O'reilly?";
+    
+    // 输出： Is your name O\'reilly?
+    echo addslashes($str);
+```
+3.函数把包含数据的二进制字符串转换为十六进制值
+```
+    $binary = "11111001";
+    $hex = dechex(bindec($binary));
+    echo $hex;
+```
+4.返回指定的字符
+```
+    $str = sprintf("The string ends in escape: %c", 97);
+    
+    echo $str;
+```
+5.将字符串分割成小块
+```
+    $string = '1234'; 
+    substr(chunk_split($string, 2, ':'), 0, -1); 
+    // will return 12:34 
+```

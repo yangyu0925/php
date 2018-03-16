@@ -1,6 +1,4 @@
 <?php
 
-$a = [];
-$b = [false, 1, 2, 3];
-
-var_dump(reset($a) === reset($b));
+$string = '1234';
+var_dump(chunk_split($string, 2, ':'));
