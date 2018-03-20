@@ -880,3 +880,32 @@
     substr(chunk_split($string, 2, ':'), 0, -1); 
     // will return 12:34 
 ```
+6.使用一个字符串分割另一个字符串
+```
+    // 示例 1
+    $pizza  = "piece1 piece2 piece3 piece4 piece5 piece6";
+    $pieces = explode(" ", $pizza);
+    echo $pieces[0]; // piece1
+    echo $pieces[1]; // piece2
+    
+    // 示例 2
+    $data = "foo:*:1023:1000::/home/foo:/bin/sh";
+    list($user, $pass, $uid, $gid, $gecos, $home, $shell) = explode(":", $data);
+    echo $user; // foo
+    echo $pass; // *
+```
+7.将格式化后的字符串写入到流
+```
+    if (!($fp = fopen('date.txt', 'w'))) {
+        return;
+    }
+    
+    fprintf($fp, "%04d-%02d-%02d", $year, $month, $day);
+```
+8.将一个一维数组的值转化为字符串
+```
+    $array = array('lastname', 'email', 'phone');
+    $comma_separated = implode(",", $array);
+    
+    echo $comma_separated; // lastname,email,phone
+```
