@@ -909,3 +909,40 @@
     
     echo $comma_separated; // lastname,email,phone
 ```
+9.使一个字符串的第一个字符小写
+```
+    $foo = 'HelloWorld';
+    $foo = lcfirst($foo);             // helloWorld
+    
+    $bar = 'HELLO WORLD!';
+    $bar = lcfirst($bar);             // hELLO WORLD!
+    $bar = lcfirst(strtoupper($bar)); // hELLO WORLD!
+```
+10.删除字符串开头的空白字符（或其他字符）
+```
+    $text = "\t\tThese are a few words :) ...  ";
+    $trimmed = ltrim($text);
+    var_dump($trimmed);
+    
+    $hello  = "Hello World";
+    $trimmed = ltrim($hello, "Hdle");
+    var_dump($trimmed);
+```
+11.以千位分隔符方式格式化一个数字
+```
+    $number = 1234.56;
+    
+    // english notation (default)
+    $english_format_number = number_format($number);
+    // 1,235
+    
+    // French notation
+    $nombre_format_francais = number_format($number, 2, ',', ' ');
+    // 1 234,56
+    
+    $number = 1234.5678;
+    
+    // english notation without thousands separator
+    $english_format_number = number_format($number, 2, '.', '');
+    // 1234.57
+```
