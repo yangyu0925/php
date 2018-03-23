@@ -846,6 +846,29 @@
         echo "fruits[" . $key . "] = " . $val . "\n";
     }
 ```
+66. 约瑟夫环
+```
+    $n=41;
+    echo "well,let  us test $n<br/>";
+    for($i=1;$i<$n;$i++){
+        $a["$i"]=$i+1;
+        $flag[$i]="in";
+    }
+    $a["$n"]=1;
+    foreach($a as $key=>$value){
+        echo $key."=>".$value."</br>";
+    }
+    $key=1;$out=0;$r=0;
+    while($out<$n){
+        $r++;
+        if($r==2){
+            echo "$a[$key]<br/>";// out
+            $a[$key]=$a[$a[$key]];
+            $out++;$r=0;
+        }
+        $key=$a[$key];
+    }
+```
 
 字符串函数
 1.以 C 语言风格使用反斜线转义字符串中的字符
@@ -945,4 +968,21 @@
     // english notation without thousands separator
     $english_format_number = number_format($number, 2, '.', '');
     // 1234.57
+```
+12. 返回字符的 ASCII 码值
+```
+    $str = "\n";
+    if (ord($str) == 10) {
+        echo "The first character of \$str is a line feed.\n";
+    }
+```
+13.将字符串解析成多个变量
+```
+    $str = "first=value&arr[]=foo+bar&arr[]=baz";
+    
+    // 推荐用法
+    parse_str($str, $output);
+    echo $output['first'];  // value
+    echo $output['arr'][0]; // foo bar
+    echo $output['arr'][1]; // baz
 ```
