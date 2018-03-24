@@ -986,3 +986,161 @@
     echo $output['arr'][0]; // foo bar
     echo $output['arr'][1]; // baz
 ```
+14.输出字符串
+```
+    print("Hello World");
+```
+15.输出格式化字符串
+```
+    printf("%.02lf\n", 1.035);
+```
+16.删除字符串末端的空白字符（或者其他字符）
+```
+    $trimmed = rtrim($text);
+```
+17.返回格式化字符串
+```
+    $num = 5;
+    $location = 'tree';
+    
+    $format = 'There are %d monkeys in the %s';
+    echo sprintf($format, $num, $location);
+```
+18.字符串替换忽略大小写版本
+```
+    $bodytag = str_ireplace("%body%", "black", "<body text=%BODY%>");
+    echo $bodytag; // <body text=black>
+```
+19.使用另一个字符串填充字符串为指定长度
+````
+    $input = "Alien";
+    echo str_pad($input, 10);                      // 输出 "Alien     "
+    echo str_pad($input, 10, "-=", STR_PAD_LEFT);  // 输出 "-=-=-Alien"
+    echo str_pad($input, 10, "_", STR_PAD_BOTH);   // 输出 "__Alien___"
+    echo str_pad($input,  6, "___");               // 输出 "Alien_"
+    echo str_pad($input,  3, "*");                 // 输出 "Alien"
+````
+20.重复一个字符串
+```
+    echo str_repeat("-=", 10);
+    //-=-=-=-=-=-=-=-=-=-=
+```
+21.子字符串替换
+````
+    // 赋值: <body text='black'>
+    $bodytag = str_replace("%body%", "black", "<body text='%body%'>");
+    
+    // 赋值: Hll Wrld f PHP
+    $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
+    $onlyconsonants = str_replace($vowels, "", "Hello World of PHP");
+    
+    // 赋值: You should eat pizza, beer, and ice cream every day
+    $phrase  = "You should eat fruits, vegetables, and fiber every day.";
+    $healthy = array("fruits", "vegetables", "fiber");
+    $yummy   = array("pizza", "beer", "ice cream");
+    
+    $newphrase = str_replace($healthy, $yummy, $phrase);
+    
+    // 赋值: 2
+    $str = str_replace("ll", "", "good golly miss molly!", $count);
+    echo $count;
+````
+22.随机打乱一个字符串
+```
+    $str = 'abcdef';
+    $shuffled = str_shuffle($str);
+    
+    // 输出类似于: bfdaec
+    echo $shuffled;
+```
+23.将字符串转换为数组
+```
+    $str = "Hello Friend";
+    
+    $arr1 = str_split($str);
+    $arr2 = str_split($str, 3);
+    
+    print_r($arr1);
+    print_r($arr2);
+```
+24.查找字符串首次出现的位置（不区分大小写）
+```
+    $findme    = 'a';
+    $mystring1 = 'xyz';
+    $mystring2 = 'ABC';
+    
+    $pos1 = stripos($mystring1, $findme);
+    $pos2 = stripos($mystring2, $findme);
+    
+    // 'a' 当然不在 'xyz' 中
+    if ($pos1 === false) {
+        echo "The string '$findme' was not found in the string '$mystring1'";
+    }
+    
+    // 注意这里使用的是 ===。简单的 == 不能像我们期望的那样工作，
+    // 因为 'a' 的位置是 0（第一个字符）。
+    if ($pos2 !== false) {
+        echo "We found '$findme' in '$mystring2' at position $pos2";
+    }
+```
+25.查找字符串首次出现的位置
+```
+    $mystring = 'abc';
+    $findme   = 'a';
+    $pos = strpos($mystring, $findme);
+```
+25.查找指定字符在字符串中的最后一次出现
+```
+    $path = '/www/public_html/index.html';
+    $filename = substr(strrchr($path, "/"), 1);
+    echo $filename; // "index.html"
+```
+26.反转字符串
+```
+    echo strrev("Hello world!"); // 输出 "!dlrow olleH"
+```
+27.计算指定字符串在目标字符串中最后一次出现的位置（不区分大小写）
+```
+    $haystack = 'ababcd';
+    $needle   = 'aB';
+    
+    $pos      = strripos($haystack, $needle);
+```
+28. 查找字符串的首次出现
+```
+    $email  = 'name@example.com';
+    $domain = strstr($email, '@');
+    echo $domain; // 打印 @example.com
+    
+    $user = strstr($email, '@', true); // 从 PHP 5.3.0 起
+    echo $user; // 打印 name
+```
+29.将字符串转化为小写
+```
+    $str = "Mary Had A Little Lamb and She LOVED It So";
+    $str = strtolower($str);
+    echo $str; // 打印 mary had a little lamb and she loved it so
+```
+30.将字符串转化为大写
+```
+    $str = "Mary Had A Little Lamb and She LOVED It So";
+    $str = strtoupper($str);
+    echo $str; // 打印 MARY HAD A LITTLE LAMB AND SHE LOVED IT SO
+```
+31.返回字符串的子串
+```
+    $rest = substr("abcdef", -1);    // 返回 "f"
+    $rest = substr("abcdef", -2);    // 返回 "ef"
+    $rest = substr("abcdef", -3, 1); // 返回 "d"
+```
+32.去除字符串首尾处的空白字符（或者其他字符）
+```
+    function trim_value(&$value) 
+    { 
+        $value = trim($value); 
+    }
+    $fruit = array('apple','banana ', ' cranberry ');
+
+    array_walk($fruit, 'trim_value');
+    var_dump($fruit);
+```

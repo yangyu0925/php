@@ -1,24 +1,19 @@
 <?php
 
-$n=41;
-echo "well,let  us test $n<br/>";
-for($i=1;$i<$n;$i++){
-    $a["$i"]=$i+1;
-    $flag[$i]="in";
-}
-$a["$n"]=1;
-foreach($a as $key=>$value){
-    echo $key."=>".$value."</br>";
-}
-$key=1;$out=0;$r=0;
-while($out<$n){
-    $r++;
-    if($r==2){
-        echo "$a[$key]<br/>";// out
-        $a[$key]=$a[$a[$key]];
-        $out++;$r=0;
-    }
-    $key=$a[$key];
-}
+//try{
+//    $DB = new PDO('mysql:dbname=ik;host=localhost', 'root', '');
+//} catch (PDOException $e) {
+//    die('数据库连接错误！错误信息：' . $e ->getMessage());
+//}
+//$DB->query('SET NAMES utf8');
+//
+//
+//$sql = 'select * from daily_hit_counter where slot = :slot';
+//
+//$stmt = $DB->prepare($sql);
+//$stmt->execute(['slot' => 4]);
+//
+//var_dump($stmt->fetch(PDO::FETCH_ASSOC));
 
-
+$path = '/www/public_html/index.html';
+echo strrchr($path, "/");
