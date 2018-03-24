@@ -1144,3 +1144,13 @@
     array_walk($fruit, 'trim_value');
     var_dump($fruit);
 ```
+33.打断字符串为指定数量的字串
+```
+    $text = "The quick brown fox jumped over the lazy dog.";
+    $newtext = wordwrap($text, 20, "<br />\n");
+    
+    echo $newtext;
+//    The quick brown fox<br />
+//    jumped over the lazy<br />
+//    dog.
+```
