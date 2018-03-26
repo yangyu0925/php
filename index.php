@@ -15,5 +15,7 @@
 //
 //var_dump($stmt->fetch(PDO::FETCH_ASSOC));
 
+
 $path = '/www/public_html/index.html';
-echo strrchr($path, "/");
+$filename = (strstr($path, "www", true));
+echo $filename;
