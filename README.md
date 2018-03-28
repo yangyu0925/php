@@ -985,6 +985,17 @@
     echo $output['first'];  // value
     echo $output['arr'][0]; // foo bar
     echo $output['arr'][1]; // baz
+    
+    $test = parse_url("http://localhost/index.php?name=tank&sex=1#top");
+    print_r($test);
+    
+    [
+        [scheme] => http //使用什么协议
+        [host] => localhost //主机名
+        [path] => /index.php //路径
+        [query] => name=tank&sex=1 // 所传的参数
+        [fragment] => top //后面根的锚点
+    ]
 ```
 14.输出字符串
 ```
