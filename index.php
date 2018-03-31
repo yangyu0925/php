@@ -15,6 +15,7 @@
 //
 //var_dump($stmt->fetch(PDO::FETCH_ASSOC));
 
+/**
 class mysql
 {
     protected $db;
@@ -57,3 +58,59 @@ $all = $db->query($sql, [])->first();
 
 var_dump($all);
 
+*/
+
+
+/**
+ * @author yyang
+ * @date
+ * @return array
+
+function getValues() {
+    $valuesArray = [];
+    // 获取初始内存使用量
+    echo round(memory_get_usage() / 1024 / 1024, 2) . ' MB' . PHP_EOL;
+    for ($i = 1; $i < 800000; $i++) {
+        $valuesArray[] = $i;
+        // 为了让我们能进行分析，所以我们测量一下内存使用量
+        if (($i % 200000) == 0) {
+            // 来 MB 为单位获取内存使用量
+            echo round(memory_get_usage() / 1024 / 1024, 2) . ' MB'. PHP_EOL;
+        }
+    }
+    return $valuesArray;
+}
+$myValues = getValues(); // 一旦我们调用函数将会在这里创建数组
+foreach ($myValues as $value) {}
+
+function getValues() {
+    // 获取内存使用数据
+    echo round(memory_get_usage() / 1024 / 1024, 2) . ' MB' . PHP_EOL;
+    for ($i = 1; $i < 800000; $i++) {
+        yield $i;
+        // 做性能分析，因此可测量内存使用率
+        if (($i % 200000) == 0) {
+            // 内存使用以 MB 为单位
+            echo round(memory_get_usage() / 1024 / 1024, 2) . ' MB'. PHP_EOL;
+        }
+    }
+}
+$myValues = getValues(); // 在循环之前都不会有动作
+foreach ($myValues as $value) {} // 开始生成数据
+
+function getValues() {
+    yield 'value';
+    return 'returnValue';
+}
+$values = getValues();
+foreach ($values as $value) {}
+echo $values->getReturn(); // 'returnValue'
+
+function getValues() {
+    yield 'key' => 'value';
+}
+$values = getValues();
+foreach ($values as $key => $value) {
+    echo $key . ' => ' . $value;
+}
+ */
