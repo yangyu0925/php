@@ -105,7 +105,7 @@ function getValues() {
 $values = getValues();
 foreach ($values as $value) {}
 echo $values->getReturn(); // 'returnValue'
-
+ 
 function getValues() {
     yield 'key' => 'value';
 }
