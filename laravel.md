@@ -38,7 +38,7 @@ php-fpm 配置调优
 Log::useDailyFiles(storage_path('logs/job/error.log'));
 
 Log::useFiles(storage_path('logs/job/error.log'));
-
+ 
 ```
     $monolog = \Log::getMonolog();
     $monolog->popHandler();
