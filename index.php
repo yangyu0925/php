@@ -114,18 +114,11 @@ foreach ($values as $key => $value) {
     echo $key . ' => ' . $value;
 }
  */
- 
-try{
-   $DB = new PDO('mysql:dbname=ik;host=localhost', 'root', '');
-} catch (PDOException $e) {
-   die('数据库连接错误！错误信息：' . $e ->getMessage());
-}
-$DB->query('SET NAMES utf8');
 
+$arr = ['name' => 'taylor', 'languages' => ['a' => 'php', 'b' => 'javascript']];
 
-$sql = 'select * from daily_hit_counter where slot = :slot';
+array_walk_recursive($arr, function (&$value, &$key) {
+    $key = strtoupper($key);
+});
 
-$stmt = $DB->prepare($sql);
-$stmt->execute(['slot' => 4]);
-
-var_dump($stmt->fetch(PDO::FETCH_ASSOC));
+var_dump($arr);

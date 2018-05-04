@@ -46,3 +46,32 @@ Log::useFiles(storage_path('logs/job/error.log'));
     \Log::info($tmp."\n\n\t");
 ```
 
+# laravel 使用ajax 提交的时候，如果 验证不通过会返回422 状态的处理
+```
+    $.ajax({        
+            type: "POST",
+            url:'{$url}',
+            data:$(this).parents('form').serialize(),
+            dataType:'json',
+            success: function(res) {
+                console.log(res);
+                alert(res.msg);
+            },
+            error : function (msg) {   
+                if (msg.status == 422) {
+                    var json=JSON.parse(msg.responseText);
+                    json = json.errors;                      
+                    for ( var item in json) {
+                        for ( var i = 0; i < json[item].length; i++) {
+                            alert(json[item][i]);
+                            return ; //遇到验证错误，就退出
+                        }
+                    }
+                   
+                } else {
+                    alert('服务器连接失败');
+                    return ;
+                }
+            }
+        });
+```
