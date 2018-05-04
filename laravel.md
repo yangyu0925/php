@@ -60,17 +60,15 @@ Log::useFiles(storage_path('logs/job/error.log'));
             error : function (msg) {   
                 if (msg.status == 422) {
                     var json=JSON.parse(msg.responseText);
-                    json = json.errors;                      
-                    for ( var item in json) {
-                        for ( var i = 0; i < json[item].length; i++) {
-                            alert(json[item][i]);
-                            return ; //遇到验证错误，就退出
-                        }
+                    json = json.errors;
+
+                    for (index in json) {
+                        $("#" + index).parent().addClass('has-error')
+                        $("#" + index).parent().find("span").text(json[index]);
                     }
-                   
                 } else {
-                    alert('服务器连接失败');
-                    return ;
+                        alert('服务器连接失败');
+                        return ;
                 }
             }
         });
