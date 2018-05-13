@@ -94,7 +94,7 @@ function getValues() {
             echo round(memory_get_usage() / 1024 / 1024, 2) . ' MB'. PHP_EOL;
         }
     }
-}
+} 
 $myValues = getValues(); // 在循环之前都不会有动作
 foreach ($myValues as $value) {} // 开始生成数据
 
