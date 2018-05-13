@@ -2,7 +2,7 @@
 
 //try{
 //    $DB = new PDO('mysql:dbname=ik;host=localhost', 'root', '');
-//} catch (PDOException $e) {
+//} catch (PDOException $e) { 
 //    die('数据库连接错误！错误信息：' . $e ->getMessage());
 //}
 //$DB->query('SET NAMES utf8');
