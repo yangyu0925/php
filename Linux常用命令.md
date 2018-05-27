@@ -23,7 +23,7 @@ ping netstat host arp traceroute
 hostname ifconfig
 
 * 常用工具  
-ssh screen clear who date
+ssh screen clear who date 
 
 * 软件包管理  
 yum rpm apt-get
