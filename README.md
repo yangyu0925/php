@@ -847,7 +847,7 @@
     }
 ```
 66. 约瑟夫环
-```
+``` 
     $n=41;
     echo "well,let  us test $n<br/>";
     for($i=1;$i<$n;$i++){
