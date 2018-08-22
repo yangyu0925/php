@@ -50,4 +50,4 @@ zip/unzip bzip2/bunzip2 gzip/gunzip tar
 ftp scp
 
 * 定时任务  
-crontab at 
+crontab at  
