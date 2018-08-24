@@ -71,5 +71,5 @@ Log::useFiles(storage_path('logs/job/error.log'));
                         return ;
                 }
             }
-        });
+        }); 
 ```
