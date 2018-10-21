@@ -698,7 +698,7 @@
     $os = array("Mac", "NT", "Irix", "Linux");
     if (in_array("Irix", $os)) {
         echo "Got Irix";
-    }
+    } 
 ```
 53.从关联数组中取得键名
 ```
