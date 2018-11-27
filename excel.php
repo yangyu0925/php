@@ -1,6 +1,5 @@
 <?php
-//$dbh = new PDO('mysql:host=210.12.12.93;dbname=eduyun', 'eduyun', 'eduyun123');
-$dbh = new PDO('mysql:host=rm-bp1e007s8zj5t50f9.mysql.rds.aliyuncs.com;dbname=eduyun', 'xesdbuser', 'ksxpwd*0614');
+$dbh = new PDO('mysql:host=localhost;dbname=', 'root', '');
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->exec('set names utf8');
 
